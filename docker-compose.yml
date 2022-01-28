@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_DEBUG=1
+    volumes:
+      - .:/app
+  db:
+    image: "postgres"
+    ports:
+      - "50432:5432"
+    environment:
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=dupa4321
+    volumes:
+      - ./data/pgdb:/var/lib/postgresql/data
+    

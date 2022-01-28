@@ -1,0 +1,22 @@
+{% extends 'base.html.jinja2' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <table style="border: 0px solid black;width: 80%;height: 100%;margin-left: auto;margin-right: auto;">
+        <tr>
+            <td colspan="3" style="border: 0px solid black;">{%- include 'header.html.jinja2' with context %}</td>
+        </tr>
+        <tr>
+            <td style="border: 0px solid black;width: 15%;"></td>
+            <td style="border: 0px solid black;">{% block content %}{% endblock %}</td>
+            <td style="border: 0px solid black;width: 15%;"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="border: 0px solid black;"></td>
+        </tr>
+    </table>
+{% endblock %}
+
+
+

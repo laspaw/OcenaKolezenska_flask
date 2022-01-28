@@ -1,0 +1,49 @@
+{% extends 'body.html.jinja2' %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+    <center>
+      {% if error %}
+        <p class=error><strong>{{ error }}</strong>
+      {% endif %}
+
+    <form method="POST" action="/login">
+        <table style="border: 1px solid black;width: 40%;height: 100%;margin-left: auto;margin-right: auto;">
+            <tr>
+                <td><label> {{ form.email.label }} </label></td>
+                <td>{{ form.email() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: crimson">
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            {{error}}
+                        {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td><label> {{ form.password.label }} </label></td>
+                <td>{{ form.password() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: crimson">
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        {{error}}
+                    {% endfor %}
+                {% endif %}
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        <button type="submit">Zaloguj</button>
+    </form>
+
+    <a href="\register">Rejestracja</a>
+
+    </center>
+{% endblock %}

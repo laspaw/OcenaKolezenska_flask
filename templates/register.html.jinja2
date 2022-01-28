@@ -1,0 +1,62 @@
+{% extends 'body.html.jinja2' %}
+
+{% block title %}Rejestracja nowego użytkownika{% endblock %}
+
+{% block content %}
+    <center>
+    <form method="POST" action="/register">
+        <table style="border: 1px solid black;">
+            <tr>
+                <td><label> {{ form.email.label }} </label></td>
+                <td>{{ form.email() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: crimson">
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            {{error}}
+                        {% endfor %}
+                    {% endif %}
+                    {% if email_exists %}
+                        <div style="color: crimson">Taki adres istnieje już w bazie strony. Spróbuj opcji odzyskiwania hasła.</div>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td><label> {{ form.password.label }} </label></td>
+                <td>{{ form.password() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: crimson">
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        {{error}}
+                    {% endfor %}
+                {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td><label> {{ form.confirm_password.label }} </label></td>
+                <td>{{ form.confirm_password() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: crimson">
+                    {% if form.confirm_password.errors %}
+                        {% for error in form.confirm_password.errors %}
+                            {{error}}
+                        {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        <button type="submit">Zarejestruj</button>
+    </form>
+
+    <a href="\login">Wróć do strony logowania</a>
+
+    </center>
+{% endblock %}
