@@ -6,6 +6,7 @@ import os
 
 load_dotenv()
 
+
 class PGRepository:
     def __init__(self):
         self.connection = self.get_connection()
@@ -15,8 +16,8 @@ class PGRepository:
     def get_connection(self):
         if 'connection' not in g:
             if os.getenv('DATABASE_URL', None) is None:
-                g.connection = psycopg2.connect(host=os.getenv('DB_HOST','db'), dbname=os.getenv('DB_NAME', 'app_db'),
-                                                user=os.getenv('DB_USER','sa'), password=os.getenv('DB_PASSWORD',''))
+                g.connection = psycopg2.connect(host=os.getenv('DB_HOST', 'db'), dbname=os.getenv('DB_NAME', 'app_db'),
+                                                user=os.getenv('DB_USER', 'sa'), password=os.getenv('DB_PASSWORD'))
             else:
                 g.connection = psycopg2.connect(os.getenv('DATABASE_URL'), sslmode='require'),
         return g.connection
