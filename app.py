@@ -2,14 +2,10 @@ from flask import Flask
 from api import login, register, classes, welcome
 from flask_login import LoginManager
 from repositories import users_repo
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
+import crypt
 
 app = Flask(__name__)
-# klucz szyfrujący identyfikatory sesji
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = crypt.mksalt(crypt.METHOD_SHA512)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
