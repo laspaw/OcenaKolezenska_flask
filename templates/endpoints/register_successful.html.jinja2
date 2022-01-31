@@ -1,0 +1,16 @@
+{% extends 'body.html.jinja2' %}
+
+{% block title %}Klasy{% endblock %}
+
+{% block content %}
+    <center>
+    <br><br><br>
+    <span style="font-size:x-large;font-family: 'Cambria';color: #4b3b34">
+        Pomyślnie utworzono konto dla: {{ prefilled_email }}<br>
+        Teraz możesz się <a href="/login/{{ prefilled_email }}">zalogować</a>.
+
+    </span>
+    <br><br><br>
+    </center>
+{% endblock %}
+

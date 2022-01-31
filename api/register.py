@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect
 from forms import RegisterForm
 from repositories import users_repo
 import bench
@@ -18,8 +18,12 @@ def register():
             if users_repo.UserRepository().email_exists(email):
                 email_exists = 'True'
             else:
-                user_id = users_repo.UserRepository().register_user(email, password_hash, salt)
+                users_repo.UserRepository().register_user(email, password_hash, salt)
 
-                return f'user successfully created with id={user_id}'
+                return redirect(f'/register_successful/{email}')
 
-    return render_template('register.html.jinja2', form=form, email_exists=email_exists)
+    return render_template('endpoints/register.html.jinja2', form=form, email_exists=email_exists)
+
+
+def register_successful(prefilled_email):
+    return render_template('endpoints/register_successful.html.jinja2', prefilled_email=prefilled_email)

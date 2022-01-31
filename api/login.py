@@ -5,9 +5,13 @@ from repositories import users_repo
 import bench
 from flask_login import login_user, logout_user
 
+def login_prefilled_email(prefilled_email):
+    return login(prefilled_email)
 
-def login():
+def login(prefilled_email=None):
     form = LoginForm(request.form)
+    if prefilled_email is not None:
+        form.email.data = prefilled_email
     error = None
 
     if request.method == "POST":
@@ -20,7 +24,7 @@ def login():
             unauthorized_user = users_repo.UserRepository()
             if not unauthorized_user.email_exists(user_email):
                 error = '''Nie mamy takiego adresu e-mail w bazie użytkowników.<br><br>
-                        Upewnij się, czy nie pomyliła(e)ś się przy wpisywaniu adresu e-mail.
+                        Upewnij się, czy nie pomyliła(e)ś się przy wpisywaniu adresu e-mail.<br>
                         Jeżeli jeszcze nie posiadasz konta, <a href="/register">zarejestruj się</a>.<br>
                         Jeżeli masz już konto, być może podczas rejestracji użyła(e)ś innego adresu e-mail.<br>
                         Jeżeli nie pamiętasz hasła, użyj opcji <a href="/restore_password">odzyskiwania hasła</a>.'''
@@ -36,12 +40,13 @@ def login():
                     return redirect('/classes')
 
     # if request.method ! = "POST":
-    return render_template('login.html.jinja2', form=form, error=error)
+    return render_template('endpoints/login.html.jinja2', form=form, error=error)
 
 
 def logout():
     logout_user()
     return redirect('/login')
 
+
 def restore_password():
-    return render_template('restore_password.html.jinja2')
+    return render_template('endpoints/restore_password.html.jinja2')

@@ -1,0 +1,22 @@
+{% extends 'body.html.jinja2' %}
+
+{% block title %}Ocena Koleżeńska{% endblock %}
+
+{% block content %}
+    <br><br><br>
+    <span style="font-size:x-large;font-family: Cambria;color: #4b3b34">
+    W tym miejscu powstaje strona, która ma za zadanie pomagać nauczycielom w wystawianiu ocen z zachowania.<br>
+    <br>
+    Pomysł na stronę jest taki: nauczyciel wprowadza klasę do bazy, a strona generuje linki – po jednym dla każdego ucznia. Nauczyciel rozsyła te linki wszystkim uczniom w danej klasie (na przykład poprzez platformę Librus).<br>
+    Gdy uczniowie klikną przesłane linki, otworzy się dla nich ankieta, dzięki której będą mogli wystawić oceny z zachowania swoim koleżankom i kolegom.<br>
+    Gdy minie czas na wypełnienie ankiet, do nauczyciela zostanie automatycznie wysłany raport z analizą statystyczną odpowiedzi nadesłanych przez uczniów.<br>
+    <br>
+    Aby móc korzystać ze strony, konieczne jest <a href="/register">utworzenie konta</a>.<br>
+    Jeżeli masz już konto, przejdź od razu do <a href="/login">strony logowania</a>.<br>
+    <br>
+    Jeśli chcesz zobaczyć jak to działa bez tworzenia konta, uruchom demo. Dane które wprowadzisz, nie zostaną nigdzie zapisane.<br>
+    </span>
+    <br><br><br>
+{% endblock %}
+
+

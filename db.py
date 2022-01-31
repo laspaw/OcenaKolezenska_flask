@@ -1,11 +1,7 @@
 from flask import g
 import psycopg2
 from psycopg2 import extras
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
-
 
 class PGRepository:
     def __init__(self):
@@ -34,12 +30,12 @@ class PGRepository:
         self.connection.commit()
 
 
+def init_app(app):
+    # instrukcja wykonywana przy zamykaniu aplikacji
+    app.teardown_appcontext(close_connection)
+
+
 def close_connection(self):
     connection = g.pop('connection', None)
     if connection is not None:
         connection.close()
-
-
-def init_app(app):
-    # instrukcja wykonywana przy zamykaniu aplikacji
-    app.teardown_appcontext(close_connection)

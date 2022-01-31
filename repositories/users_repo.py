@@ -30,6 +30,8 @@ class UserRepository(db.PGRepository):
         return self.cursor.fetchone()
 
     def map_db_user_to_obj_user(self, row):
+        if row is None:
+            return None
         user = LoggedUser()
         user.id = row['id']
         user.email = row['email']

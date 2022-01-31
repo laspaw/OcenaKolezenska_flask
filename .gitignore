@@ -9,6 +9,8 @@ __pycache__/
 *.lnk
 .env
 todo.txt
+docker-compose.yml
+
 
 # _______defaultignores_______
 
